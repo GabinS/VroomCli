@@ -1,14 +1,16 @@
 <template>
-  <div class="container min-vh-100">
-    <div class="row align-items-center min-vh-100">
-      <div class="col-md-4 px-4 text-center" v-for="service in services" :key="service.id">
-        <router-link :to="{name: 'Home'}" class="text-white text-decoration-none">
-          <div class="bg-red p-5 rounded shadow-lg" :class="service.bgclass">
-            <p class="h2">Service {{service.id}}</p>
-            <p class="h3">{{service.name}}</p>
+  <div class="row align-items-center min-vh-100">
+    <div class="col-md-4 px-4 text-center" v-for="service in services" :key="service.name">
+      <router-link :to="{name: service.link}" class="text-decoration-none shadow-lg homecard">
+        <div class="homecard-box">
+          <div class="content-box">
+            <div class="icon-img">
+              <img :src="require('../assets/img/'+service.img)" alt="">
+            </div>
+            <p class="title">{{service.name}}</p>
           </div>
-        </router-link>
-      </div>
+        </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -20,21 +22,18 @@ export default {
     return {
       services: [
         {
-          id: 1,
           name: 'Vroom Service',
-          bgclass: 'bg-red',
+          img: 'car.svg',
+          link: 'VroomService'
+        },
+        {
+          name: 'Plane Service',
+          img: 'airplane.svg',
           link: ''
         },
         {
-          id: 2,
-          name: '??? Service',
-          bgclass: 'bg-blue',
-          link: ''
-        },
-        {
-          id: 3,
-          name: '??? Service',
-          bgclass: 'bg-green',
+          name: 'Hostel Service',
+          img: 'bed.svg',
           link: ''
         }
       ]
@@ -42,15 +41,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  .container .bg-red {
-    background-color: #e53935;
-  }
-  .container .bg-blue {
-    background-color: #1E88E5;
-  }
-  .container .bg-green {
-    background-color: #7CB342;
-  }
-</style>

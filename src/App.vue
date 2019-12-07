@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="container min-vh-100">
     <router-view/>
   </div>
 </template>
@@ -10,3 +10,4 @@ export default {
 }
 </script>
 
+<style src="./assets/styles/css/default.css"/>

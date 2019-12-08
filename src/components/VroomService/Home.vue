@@ -8,7 +8,10 @@
 </template>
 
 <script>
+import TopMenu from '@/components/VroomService/TopMenu'
+
 export default {
-    name: 'VroomService'
+    name: 'VroomService',
+    components: { TopMenu }
 }
 </script>

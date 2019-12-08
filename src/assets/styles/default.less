@@ -1,6 +1,6 @@
-
 // COLOR
 @white: #f9f9f9;
+@black: #171717;
 
 @gray1:  #9fa9a3;
 @gray2:  #78909c;
@@ -19,7 +19,7 @@
 
 // FONT
 .font_brushscript(@size) {
-  font-family: "Brush Script MT", cursive;
+  font-family: "Brush Script MT", cursive !important;
   font-size: @size;
 }
 .font_averialibre(@size) {
@@ -32,18 +32,64 @@
   width: @width;
   height: @width;
 }
+.circle(@width) {
+  .square(@width);
+  border-radius: 100%;
+}
 .middlecenter() {
   position: absolute;
-  top: 50%;
+  text-align: center;
+  margin: auto;
   transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+.clearlinkstyle() {
+  color: @black;
+  text-decoration: none;
+}
+
+.transition(@time) {
+  transition: @time;
+  * {
+    transition: @time;
+  }
+  &:hover {
+    transition: @time;
+    * {
+      transition: @time;
+    }
+  }
+}
+
+.btn-rounded(@size, @bg_c, @border_c, @icon_c) {
+  .circle(@size);
+  position: relative;
+  background-color: @bg_c;
+  border: 5px solid @border_c;
+  .icon {
+    .middlecenter();
+    font-size: @size/2;
+    color: @icon_c;
+  }
+  &:hover {
+    border-width: 3px;
+    box-shadow: 0 0 .5rem @black;
+    .icon {
+      font-size: @size/1.6;
+    }
+  }
 }
 
 // STYLE
-* {
-  font-family: monospace;
+html, body {
+  font-family: monospace !important;
+  color: @black;
 }
 
 .homecard {
+  .transition(.5s);
   display: block;
   position: relative;
   height: 20rem;
@@ -83,9 +129,6 @@
   }
 
   &:hover {
-    * {
-      transition: .5s;
-    }
     .homecard-box {
       border-width: 8px;
       .content-box {
@@ -94,7 +137,7 @@
           .square(6.5rem);
         }
         .title {
-          .font_brushscript(40px);
+          font-size: 40px;
         }
       }
     }
@@ -161,7 +204,4 @@
 
 .customlist {
   .font_averialibre(1rem);
-  .item {
-
-  }
 }

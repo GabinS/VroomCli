@@ -2,7 +2,7 @@
     <div class="menu row">
         <button-home class="col-md-2" />
         <div class="items col-md-8">
-            <router-link :to="{name: 'Les Voitures'}" class="item">Les Voitures</router-link>
+            <router-link :to="{name: 'Voitures'}" class="item">Les Voitures</router-link>
             <router-link :to="{name: 'Reservations'}" class="item">Mes réservations</router-link>
             <router-link :to="{name: 'Profil'}" class="item">Mon compte</router-link>
         </div>

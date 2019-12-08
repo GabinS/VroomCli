@@ -37,15 +37,16 @@
             </div>
         </div>
 
-        <div class="customlist">
+        <div class="customlist col-12">
             <div class="item row border rounded border-alert-dark p-3 mt-4" v-for="car in cars" :key="car.id">
                 <div class="col-md-2">{{car.name}}</div>
                 <div class="col-md-2">{{car.brand}}</div>
+                <div class="col-md-1">{{car.nbplace}} places</div>
                 <div class="col-md-4">{{car.description}}</div>
                 <div class="col-md-2">
-                    <span class="float-right">{{car.price/100}}€ / heure</span>
+                    <span class="float-right">{{car.price/100}}€/heure</span>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-1">
                     <button class="btn btn-outline-secondary float-right">Réserver</button>
                 </div>
             </div>
@@ -73,6 +74,7 @@ export default {
                     id: 0,
                     name: 'name',
                     brand: 'brand',
+                    nbplace: 2,
                     price: 2500,
                     description: 'description'
                 },
@@ -80,6 +82,7 @@ export default {
                     id: 1,
                     name: 'name 1',
                     brand: 'brand 1',
+                    nbplace: 2,
                     price: 3450,
                     description: 'description 1'
                 }

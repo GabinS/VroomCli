@@ -3,8 +3,8 @@
         <button-home class="col-md-2" />
         <div class="items col-md-8">
             <router-link :to="{name: 'Voitures'}" class="item">Les Voitures</router-link>
-            <router-link :to="{name: 'Reservations'}" class="item">Mes réservations</router-link>
-            <router-link :to="{name: 'Profil'}" class="item">Mon compte</router-link>
+            <router-link :to="{name: 'Reservations'}" class="item">Mes Réservations</router-link>
+            <router-link :to="{name: 'Profil'}" class="item">Mon Compte</router-link>
         </div>
         <router-link :to="{name: 'Connexion'}" class="col-md-2">
         <div class="btn-home float-right clearfix">

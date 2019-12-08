@@ -38,7 +38,7 @@ export default new Router({
       },
       children: [
         {
-          path: '',
+          path: '/',
           name: 'Connexion',
           component: Connexion,
           meta: {

@@ -1,5 +1,6 @@
 // COLOR
-@white: #f9f9f9;
+@white: #ffffff;
+@white2: #f9f9f9;
 @black: #171717;
 
 @gray1:  #9fa9a3;
@@ -129,7 +130,7 @@ html, body {
       .icon-img {
         .circle(6rem);
         border: 5px solid @gray1;
-        background-color: @white;
+        background-color: @white2;
         position: absolute;
         margin: auto;
         top: -3rem;
@@ -166,6 +167,10 @@ html, body {
 }
 
 .menu {
+  position: sticky;
+  top: 0;
+  background: @white;
+  z-index: 1000;
   .font_brushscript(1.8rem);
   box-shadow: 0 4px 10px -12px @black;
   text-align: center;
@@ -186,12 +191,12 @@ html, body {
 
 .btn-home {
   .transition(.5s);
-  .btn-rounded(4.8rem, @brun1, @gray3, @white);
+  .btn-rounded(4.8rem, @brun1, @gray3, @white2);
 }
 
 .filters {
   .font_averialibre(1rem);
-  background-color: @white;
+  background-color: @white2;
   text-align: center;
   padding-top: 1rem;
   .item {

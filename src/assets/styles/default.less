@@ -2,12 +2,15 @@
 // COLOR
 @white: #f9f9f9;
 
+@gray1:  #9fa9a3;
+@gray2:  #78909c;
+@gray3:  #455a64;
+
 @blue1: #d5f4e6;
 @blue2: #80ced6;
 @blue3: #618685;
 
 @beige: #fefbd8;
-@gray:  #9fa9a3;
 
 @brun1: #b9936c;
 @brun2: #dac292;
@@ -17,6 +20,10 @@
 // FONT
 .font_brushscript(@size) {
   font-family: "Brush Script MT", cursive;
+  font-size: @size;
+}
+.font_averialibre(@size) {
+  font-family: "Averia Libre" !important;
   font-size: @size;
 }
 
@@ -44,7 +51,7 @@
   .homecard-box {
     position: relative;
     background-color: @brun3;
-    border: 5px solid @gray;
+    border: 5px solid @gray1;
     height: 100%;
     .content-box {
       position: absolute;
@@ -53,9 +60,8 @@
       width: 100%;
       bottom: 0;
       .icon-img {
-        .square(6rem);
-        border: 5px solid @gray;
-        border-radius: 100%;
+        .circle(6rem);
+        border: 5px solid @gray1;
         background-color: @white;
         position: absolute;
         margin: auto;
@@ -92,5 +98,70 @@
         }
       }
     }
+  }
+}
+
+.menu {
+  .font_brushscript(1.8rem);
+  box-shadow: 0 4px 10px -12px @black;
+  text-align: center;
+  padding: .5rem;
+  .items {
+    .item {
+      .clearlinkstyle();
+      .transition(.5s);
+      display: inline-block;
+      margin: 1rem;
+      &:hover {
+        font-size: 2rem;
+        text-shadow: 0 0 .2rem @black;
+      }
+    }
+  }
+}
+
+.btn-home {
+  .transition(.5s);
+  .btn-rounded(4.8rem, @brun1, @gray3, @white);
+}
+
+.filters {
+  .font_averialibre(1rem);
+  background-color: @white;
+  text-align: center;
+  padding-top: 1rem;
+  .item {
+    display: inline-block;
+    margin: auto 1rem;
+    margin-bottom: 1rem;
+    vertical-align: middle;
+    * {
+      vertical-align: middle;
+    }
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &.selector {
+      width: 20%;
+      min-width: 10rem;
+    }
+    &.range {
+      input {
+        margin: auto .5rem;
+      }
+    }
+    label {
+      margin: 0;
+    }
+  }
+}
+
+.customlist {
+  .font_averialibre(1rem);
+  .item {
+
   }
 }

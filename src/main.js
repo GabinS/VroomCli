@@ -7,6 +7,12 @@ import bootstrap_js from 'bootstrap/dist/js/bootstrap.js'
 
 Vue.config.productionTip = false
 
+// Add title page
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title
+  next()
+})
+
 new Vue({
   render: h => h(App),
   router,

@@ -1,9 +1,10 @@
 <template>
-    <router-link :to="{name: 'Home'}">
-        <div class="btn-home">
-            <p>Home</p>
+    <div>
+        <top-menu />
+        <div class="content py-4">
+            <router-view/>
         </div>
-    </router-link>
+    </div>
 </template>
 
 <script>

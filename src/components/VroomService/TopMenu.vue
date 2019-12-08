@@ -6,7 +6,7 @@
             <router-link :to="{name: 'Reservations'}" class="item">Mes réservations</router-link>
             <router-link :to="{name: 'Profil'}" class="item">Mon compte</router-link>
         </div>
-        <router-link :to="{name: ''}" class="col-md-2">
+        <router-link :to="{name: 'Connexion'}" class="col-md-2">
         <div class="btn-home float-right clearfix">
             <i class="icon fa fa-power-off"></i>
         </div>

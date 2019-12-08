@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from '@/components/Home'
 import Page404 from '@/components/Page404'
 import VroomService from '@/components/VroomService/Home'
+import Connexion from '@/components/VroomService/Connexion'
 import Voitures from '@/components/VroomService/Voitures'
 import Reservations from '@/components/VroomService/Reservations'
 import Profil from '@/components/VroomService/Profil'
@@ -36,6 +37,14 @@ export default new Router({
         title: 'VroomService'
       },
       children: [
+        {
+          path: '',
+          name: 'Connexion',
+          component: Connexion,
+          meta: {
+            title: 'VroomService'
+          }
+        },
         {
           path: 'voitures',
           name: 'Voitures',

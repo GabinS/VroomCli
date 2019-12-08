@@ -1,6 +1,7 @@
 
 // COLOR
 @white: #f9f9f9;
+@black: #171717;
 
 @blue1: #d5f4e6;
 @blue2: #80ced6;
@@ -16,7 +17,7 @@
 
 // FONT
 .font_brushscript(@size) {
-  font-family: "Brush Script MT", cursive;
+  font-family: "Brush Script MT", cursive !important;
   font-size: @size;
 }
 
@@ -25,18 +26,64 @@
   width: @width;
   height: @width;
 }
+.circle(@width) {
+  .square(@width);
+  border-radius: 100%;
+}
 .middlecenter() {
   position: absolute;
-  top: 50%;
+  text-align: center;
+  margin: auto;
   transform: translateY(-50%);
+  top: 50%;
+  left: 0;
+  right: 0;
+}
+.clearlinkstyle() {
+  color: @black;
+  text-decoration: none;
+}
+
+.transition(@time) {
+  transition: @time;
+  * {
+    transition: @time;
+  }
+  &:hover {
+    transition: @time;
+    * {
+      transition: @time;
+    }
+  }
+}
+
+.btn-rounded(@size, @bg_c, @border_c, @icon_c) {
+  .circle(@size);
+  position: relative;
+  background-color: @bg_c;
+  border: 5px solid @border_c;
+  .icon {
+    .middlecenter();
+    font-size: @size/2;
+    color: @icon_c;
+  }
+  &:hover {
+    border-width: 3px;
+    box-shadow: 0 0 .5rem @black;
+    .icon {
+      font-size: @size/1.6;
+    }
+  }
 }
 
 // STYLE
-* {
-  font-family: monospace;
+html, body {
+  font-family: monospace !important;
+  color: @black;
 }
 
 .homecard {
+  .transition(.5s);
   display: block;
   position: relative;
   height: 20rem;
@@ -53,9 +100,8 @@
       width: 100%;
       bottom: 0;
       .icon-img {
-        .square(6rem);
+        .circle(6rem);
         border: 5px solid @gray;
-        border-radius: 100%;
         background-color: @white;
         position: absolute;
         margin: auto;
@@ -77,9 +123,6 @@
   }
 
   &:hover {
-    * {
-      transition: .5s;
-    }
     .homecard-box {
       border-width: 8px;
       .content-box {
@@ -88,9 +131,32 @@
           .square(6.5rem);
         }
         .title {
-          .font_brushscript(40px);
+          font-size: 40px;
         }
       }
     }
   }
+}
+
+.menu {
+  .font_brushscript(1.8rem);
+  text-align: center;
+  padding: .5rem;
+  .items {
+    .item {
+      .clearlinkstyle();
+      .transition(.5s);
+      display: inline-block;
+      margin: 1rem;
+      &:hover {
+        font-size: 2rem;
+        text-shadow: 0 0 .2rem @black;
+      }
+    }
+  }
+}
+
+.btn-home {
+  .transition(.5s);
+  .btn-rounded(5rem, @blue3, @gray, @white);
 }

@@ -1,13 +1,17 @@
 <template>
-    <router-link :to="{name: 'Home'}">
-        <div class="btn-home">
-            <p>Home</p>
+    <div>
+        <top-menu />
+        <div class="content">
+            
         </div>
-    </router-link>
+    </div>
 </template>
 
 <script>
+import TopMenu from '@/components/VroomService/TopMenu'
+
 export default {
-    name: 'VroomService'
+    name: 'VroomService',
+    components: { TopMenu }
 }
 </script>

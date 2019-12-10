@@ -38,24 +38,27 @@
         </div>
 
         <div class="customlist col-12">
-            <div class="item row border rounded border-alert-dark p-3 mt-4" v-for="car in cars" :key="car.id">
-                <div class="col-md-2">{{car.name}}</div>
-                <div class="col-md-2">{{car.brand}}</div>
-                <div class="col-md-1">{{car.nbplace}} places</div>
-                <div class="col-md-4">{{car.description}}</div>
+            <div class="item row border rounded border-alert-dark p-3 mt-4" v-for="car in cars" :key="car.Id[0]">
+                <div class="col-md-2">{{car.Name[0]}}</div>
+                <div class="col-md-2">{{car.Brand[0].Name[0]}}</div>
+                <div class="col-md-1">{{car.PlaceNb[0]}} places</div>
+                <div class="col-md-4">{{car.Description[0]}}</div>
                 <div class="col-md-2">
-                    <span class="float-right">{{car.price/100}}€/heure</span>
+                    <span class="float-right">{{car.Price[0]/100}}€/heure</span>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-outline-secondary float-right">Réserver</button>
+                    <button class="btn btn-outline-secondary float-right" @click="getCars">Réserver</button>
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 
 <script>
+
+import axios from 'axios'
+const parseString = require('xml2js').parseString;
+
 export default {
     name: 'Voitures',
     data: () => {
@@ -69,25 +72,24 @@ export default {
             maxprice: 120,
             maxprice_selected: 120,
 
-            cars: [
-                {
-                    id: 0,
-                    name: 'name',
-                    brand: 'brand',
-                    nbplace: 2,
-                    price: 2500,
-                    description: 'description'
-                },
-                {
-                    id: 1,
-                    name: 'name 1',
-                    brand: 'brand 1',
-                    nbplace: 2,
-                    price: 3450,
-                    description: 'description 1'
-                }
-            ]
+            cars: []
         }
+    },
+    methods: {
+        getCars: function() {
+            var vm = this
+            axios.post('http://192.168.43.241:52066/VroomService.asmx/GetListCar').then(response => {
+                parseString(response.data, (err, result) => {
+                    vm.cars = result.ArrayOfCar.Car
+                });
+            })
+            .catch(error => {
+                vm.test = error
+            });
+        }
+    },
+    mounted: function() {
+        this.getCars()
     }
 }
 </script>

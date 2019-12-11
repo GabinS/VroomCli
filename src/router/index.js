@@ -43,10 +43,10 @@ export default new Router({
       children: [
         {
           path: '/',
-          name: 'Connexion',
+          name: 'VroomService',
           component: Connexion,
           meta: {
-            title: 'VroomService'
+            title: 'Connexion VroomService'
           }
         },
         {
@@ -54,7 +54,7 @@ export default new Router({
           name: 'Voitures',
           component: Voitures,
           meta: {
-            title: 'VroomService'
+            title: 'Les Voitures VroomService'
           }
         },
         {
@@ -62,7 +62,7 @@ export default new Router({
           name: 'Reservations',
           component: Reservations,
           meta: {
-            title: 'VroomService'
+            title: 'Mes Réservations VroomService'
           }
         },
         {
@@ -70,7 +70,7 @@ export default new Router({
           name: 'Profil',
           component: Profil,
           meta: {
-            title: 'VroomService'
+            title: 'Mon compte VroomService'
           },
         }
       ]
@@ -84,11 +84,19 @@ export default new Router({
       },
       children: [
         {
+          path: '/',
+          name: 'PrtchService',
+          component: Voyages,
+          meta: {
+            title: 'Les Voyages PrtchService'
+          }
+        },
+        {
           path: 'voyages',
           name: 'Voyages',
           component: Voyages,
           meta: {
-            title: 'PrtchService'
+            title: 'Les Voyages PrtchService'
           }
         },
       ]

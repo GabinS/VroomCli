@@ -12,14 +12,14 @@
             <div class="filters col-12 rounded mt-4">
                 <div class="item selector input-group">
                     <label for="">Marques</label>
-                    <select name="brands" class="custom-select" v-model="brand_selected_id" @change="sort_cars">
+                    <select name="brands" class="custom-select" v-model="brand_selected_id" @change="search_cars">
                         <option value="0" selected>Toutes</option>
                         <option :value="brand.Id[0]" v-for="brand in brands" :key="brand.id">{{brand.Name[0]}}</option>
                     </select>
                 </div>
                 <div class="item selector input-group">
                     <label for="">Nombre de places</label>
-                    <select name="nbplaces" class="custom-select" v-model="nbplaces_selected_id" @change="sort_cars">
+                    <select name="nbplaces" class="custom-select" v-model="nbplaces_selected_id" @change="search_cars">
                         <option value="0" selected>N'importe</option>
                         <option :value="nbplace" v-for="nbplace in nbplaces" :key="nbplace">{{nbplace}}</option>
                     </select>
@@ -28,10 +28,10 @@
                     <i class="fa fa-calendar mx-2"></i>
                     <label for="">Période</label>
                 </div>
-                <div class="item range form-group">
+                <div class="item range form-group" @click="setPriceRange">
                     <label for="" class="d-block" @load="setPriceRange">Prix max : {{maxprice_selected}}€</label>
                     <span>{{minprice}}€</span>
-                    <input type="range" :min="minprice" :max="maxprice" v-model="maxprice_selected" @change="sort_cars">
+                    <input type="range" :min="minprice" :max="maxprice" v-model="maxprice_selected" @change="search_cars">
                     <span>{{maxprice}}€</span>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                     <span class="float-right">{{car.Price[0]/100}}€/jour</span>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-outline-secondary float-right" @click="setPriceRange">Réserver</button>
+                    <button class="btn btn-outline-secondary float-right">Réserver</button>
                 </div>
             </div>
         </div>
@@ -57,7 +57,8 @@
 <script>
 
 import axios from 'axios'
-const parseString = require('xml2js').parseString;
+axios.defaults.baseURL = 'http://192.168.43.240:52066/VroomService.asmx/'
+const parseString = require('xml2js').parseString
 
 export default {
     name: 'Voitures',
@@ -80,10 +81,9 @@ export default {
         }
     },
     methods: {
-        servicepath: () => 'http://192.168.1.12:52066/VroomService.asmx/',
         getCars() {
             var vm = this
-            axios.post(vm.servicepath().concat('GetListCar')).then(response => {
+            axios.post('GetListCar').then(response => {
                 parseString(response.data, (err, result) => {
                     vm.cars = result.ArrayOfCar.Car
                     vm.cars_sort = result.ArrayOfCar.Car
@@ -95,7 +95,7 @@ export default {
         },
         getBrands() {
             var vm = this
-            axios.post(vm.servicepath().concat('GetListBrand')).then(response => {
+            axios.post('GetListBrand').then(response => {
                 parseString(response.data, (err, result) => {
                     vm.brands = result.ArrayOfBrand.Brand
                 });
@@ -106,7 +106,7 @@ export default {
         },
         getNbPlaces() {
             var vm = this
-            axios.post(vm.servicepath().concat('GetListNbPlace')).then(response => {
+            axios.post('GetListNbPlace').then(response => {
                 parseString(response.data, (err, result) => {
                     vm.nbplaces = result.ArrayOfInt.int
                 });
@@ -115,6 +115,7 @@ export default {
                 vm.error = error
             });
         },
+
         setPriceRange() {
             this.cars.forEach(c => {
                 this.minprice = (this.minprice == 0 || c.Price[0]/100 < this.minprice) ? c.Price[0]/100 : this.minprice;
@@ -131,18 +132,20 @@ export default {
                 this.cars_sort = this.cars_sort.filter(c => c.PlaceNb[0] == this.nbplaces_selected_id)
             if (this.maxprice_selected != 0)
                 this.cars_sort = this.cars_sort.filter(c => c.Price[0]/100 <= this.maxprice_selected)
-            this.search_cars()
         },
         search_cars() {
+            this.sort_cars()
             var cars_search = this.cars_sort
-            this.cars_sort = cars_search.filter(c => c.Name[0].toLowerCase().includes(this.search.toLowerCase()) || c.Brand[0].Name[0].toLowerCase().includes(this.search.toLowerCase()))
+            if  (this.search != "")
+                this.cars_sort = cars_search.filter(c => c.Name[0].toLowerCase().includes(this.search.toLowerCase()) || c.Brand[0].Name[0].toLowerCase().includes(this.search.toLowerCase()))
         }
 
     },
-    mounted: function() {
+    mounted() {
         this.getCars()
         this.getBrands()
         this.getNbPlaces()
+        this.setPriceRange() // TODO revoir l'appel de la method pour l'executer au chargement
     }
 }
 </script>

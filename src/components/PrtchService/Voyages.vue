@@ -17,6 +17,9 @@
 </template>
 
 <script>
+import axios from 'axios'
+axios.defaults.baseURL = 'http://192.168.214.62:5001/external/voyages'
+
 export default {
     name: 'Voyages',
     data: () => {
@@ -28,10 +31,18 @@ export default {
         }
     },
     methods: {
-        // TODO Récupérer la liste des voyages
+        getTravels() {
+            var vm = this
+            axios.get().then(function (response) {
+                vm.voyages = response
+            })
+            .catch(function (error) {
+                vm.error = error
+            });
+        }
     },
     mounted() {
-        // TODO Récupérer la liste des voyages au chargement
+        this.getTravels()
     }
 }
 </script>

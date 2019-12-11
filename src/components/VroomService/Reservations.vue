@@ -7,13 +7,13 @@
           <div class="col-md-2">Coût</div>
           <div class="col-md-3">Durée de la réservation</div>
           <div class="col-md-1">Total</div>
-          <div class="col-md-1">Statut</div>
+          <div class="col-md-1 text-center">Statut</div>
       </div>
       <div class="item row border rounded border-alert-dark p-3 mt-4" v-for="booking in bookings" :key="booking.id">
           <div class="col-md-2">{{booking.Car[0].Name[0]}}</div>
           <div class="col-md-2">{{booking.Car[0].PlaceNb[0]}} places</div>
           <div class="col-md-2">{{booking.Car[0].Price[0]/100}}€/jour</div>
-          <div class="col-md-3">Du {{booking.StartDate[0] | formatDate}} au {{booking.EndDate[0] | formatDate}}</div><!-- TODO formater la date (enlever l'heure) -->
+          <div class="col-md-3">Du {{booking.StartDate[0] | formatDate}} au {{booking.EndDate[0] | formatDate}}</div>
           <div class="col-md-1">{{getTotal(booking)/100}}€</div>
           <div class="col-md-2 text-center">{{booking.State[0]}}</div>
       </div>
@@ -54,7 +54,7 @@ export default {
         });
     },
     // * On récupère le numéro d'identification de la réservation.
-     getIdBooking() {
+    getIdBooking() {
       var vm = this
         axios.get('GetBookingById').then(response => {
             parseString(response.data, (err, result) => {
@@ -93,9 +93,9 @@ export default {
     },
     // Retourne le montant total de la réservation.
     getTotal(booking) {
-       var vm = this
-       var nbSec = 0
-       var nbJour = 0
+      var vm = this
+      var nbSec = 0
+      var nbJour = 0
 
       try {
 
@@ -110,11 +110,7 @@ export default {
     }
   },
   mounted: function() {
-    //this.getIdUser(),
-    //this.getIdBooking(),
     this.postBookings()
-    //this.cancelBookings()
   }
-  
 }
 </script>

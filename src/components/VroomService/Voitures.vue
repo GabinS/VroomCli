@@ -44,7 +44,7 @@
                 <div class="col-md-1">{{car.PlaceNb[0]}} places</div>
                 <div class="col-md-4">{{car.Description[0]}}</div>
                 <div class="col-md-2">
-                    <span class="float-right">{{car.Price[0]/100}}€/heure</span>
+                    <span class="float-right">{{car.Price[0]/100}}€/jour</span>
                 </div>
                 <div class="col-md-1">
                     <button class="btn btn-outline-secondary float-right" @click="getCars">Réserver</button>
@@ -78,7 +78,7 @@ export default {
     methods: {
         getCars: function() {
             var vm = this
-            axios.post('http://192.168.43.241:52066/VroomService.asmx/GetListCar').then(response => {
+            axios.post('http://localhost:52066/VroomService.asmx/GetListCar').then(response => {
                 parseString(response.data, (err, result) => {
                     vm.cars = result.ArrayOfCar.Car
                 });

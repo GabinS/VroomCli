@@ -23,7 +23,7 @@
 
 <script>
 import axios from 'axios'
-axios.defaults.baseURL = 'http://192.168.43.240:52066/VroomService.asmx/'
+axios.defaults.baseURL = 'http://localhost:52066/VroomService.asmx/'
 const parseString = require('xml2js').parseString
 const querystring = require('querystring')
 

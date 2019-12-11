@@ -28,8 +28,8 @@
                     <i class="fa fa-calendar mx-2"></i>
                     <label for="">Période</label>
                 </div>
-                <div class="item range form-group" @click="setPriceRange">
-                    <label for="" class="d-block" @load="setPriceRange">Prix max : {{maxprice_selected}}€</label>
+                <div class="item range form-group">
+                    <label for="" class="d-block" @click="setPriceRange">Prix max : {{maxprice_selected}}€</label>
                     <span>{{minprice}}€</span>
                     <input type="range" :min="minprice" :max="maxprice" v-model="maxprice_selected" @change="search_cars">
                     <span>{{maxprice}}€</span>
@@ -47,21 +47,25 @@
                     <span class="float-right">{{car.Price[0]/100}}€/jour</span>
                 </div>
                 <div class="col-md-1">
-                    <button class="btn btn-outline-secondary float-right">Réserver</button>
+                    <button class="btn btn-outline-secondary float-right" data-toggle="modal" data-target="#ReservationModal" @click="selected_car = car">Réserver</button>
                 </div>
             </div>
         </div>
+        <reservation-modal />
     </div>
 </template>
 
 <script>
 
+import ReservationModal from '@/components/VroomService/ReservationModal'
+
 import axios from 'axios'
-axios.defaults.baseURL = 'http://192.168.43.240:52066/VroomService.asmx/'
+axios.defaults.baseURL = 'http://localhost:52066/VroomService.asmx/'
 const parseString = require('xml2js').parseString
 
 export default {
     name: 'Voitures',
+    components: { ReservationModal },
     data: () => {
         return {
             search: '',
@@ -77,7 +81,8 @@ export default {
             maxprice_selected: 0,
 
             cars: [],
-            cars_sort: []
+            cars_sort: [],
+            selected_car: ''
         }
     },
     methods: {

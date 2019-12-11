@@ -6,6 +6,15 @@ import bootstrap_css from 'bootstrap/dist/css/bootstrap.min.css'
 import bootstrap_js from 'bootstrap/dist/js/bootstrap.js'
 import font_awesome from 'font-awesome/css/font-awesome.min.css'
 
+import moment from 'moment'
+
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+});
+
+
 Vue.config.productionTip = false
 
 // Add title page

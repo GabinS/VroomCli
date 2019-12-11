@@ -24,7 +24,6 @@
     <label for="inputPassword3" class="col-sm-4 col-form-label text-right">Nouveau mot de passe</label>
     <div class="col-sm-8">
       <input type="password" class="form-control" v-model="password" >
-
   </div>
       </div>
   </div>

@@ -27,12 +27,12 @@ export default {
           link: 'VroomService'
         },
         {
-          name: 'Plane Service',
+          name: 'Prrrrrrtch Service',
           img: 'airplane.svg',
-          link: ''
+          link: 'PrtchService'
         },
         {
-          name: 'Hostel Service',
+          name: 'Groom Service',
           img: 'bed.svg',
           link: ''
         }

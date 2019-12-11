@@ -8,6 +8,10 @@ import Voitures from '@/components/VroomService/Voitures'
 import Reservations from '@/components/VroomService/Reservations'
 import Profil from '@/components/VroomService/Profil'
 
+
+import PrtchService from '@/components/PrtchService/Home'
+import Voyages from '@/components/PrtchService/Voyages'
+
 Vue.use(Router)
 
 export default new Router({
@@ -69,6 +73,24 @@ export default new Router({
             title: 'VroomService'
           },
         }
+      ]
+    },
+    {
+      path: '/prtchservice',
+      name: 'PrtchService',
+      component: PrtchService,
+      meta: {
+        title: 'PrtchService'
+      },
+      children: [
+        {
+          path: 'voyages',
+          name: 'Voyages',
+          component: Voyages,
+          meta: {
+            title: 'PrtchService'
+          }
+        },
       ]
     }
   ]

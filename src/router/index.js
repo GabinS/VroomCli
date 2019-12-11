@@ -50,6 +50,14 @@ export default new Router({
           }
         },
         {
+          path: '/',
+          name: 'Connexion',
+          component: Connexion,
+          meta: {
+            title: 'Connexion VroomService'
+          }
+        },
+        {
           path: 'voitures',
           name: 'Voitures',
           component: Voitures,

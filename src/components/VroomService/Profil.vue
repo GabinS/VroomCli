@@ -6,25 +6,25 @@
   <div class="form-group row">
     <label for="inputEmail3" class="col-sm-2 col-form-label">Pseudonyme</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputEmail3" placeholder="Pseudonyme" >
+      <input type="text" class="form-control" id="inputEmail3" >{{user.Username}}
     </div>
   </div>
   <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Nom</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="Nom">
+      <input type="text" class="form-control" id="inputPassword3">{{user.Lastname}}
     </div>
   </div>
     <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Prénom</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="inputPassword3" placeholder="Prénom">
+      <input type="text" class="form-control" id="inputPassword3">{{User.Firstname}}
     </div>
   </div>
     <div class="form-group row">
     <label for="inputPassword3" class="col-sm-2 col-form-label">Mot de passe</label>
     <div class="col-sm-10">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="Mot de passe">
+      <input type="password" class="form-control" id="inputPassword3">{{User.Password}}
 
   </div>
       </div>
